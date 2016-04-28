@@ -126,9 +126,7 @@ Setup hostapd.
 sudo apt-get install hostapd
 ```
 
-```
-sudo vi /etc/hostapd/hostapd.conf
-```
+edit `/etc/hostapd/hostapd.conf`
 
 content
 ```
@@ -155,9 +153,8 @@ devcice_name=RTL8192CU
 manufacturer=Realtek
 ```
 
-```
-sudo vi /etc/default/hostapd
-```
+
+edit `/etc/default/hostapd`
 
 ```
 DEAMON_CONF="/etc/hostapd/hostapd.conf"
@@ -171,21 +168,25 @@ cd RTL8188-hostapd/hostapd
 sudo make
 sudo make install
 ```
-Check
+
+Check that
+
 ```
 sudo hostapd -dd /etc/hostapd/hostapd.conf
 ```
 
 Setup NAT
+
 ```
 sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 ```
 
-edit /etc/sysctl.conf
+edit `/etc/sysctl.conf`
+
 ```
 net.ipv4.ip_forward=1
 ```
-notice ipv6..
+take note of ipv6..
 
 boot NAT
 ```
@@ -195,7 +196,7 @@ sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
-edit /etc/network/interfaces, add at last
+edit `/etc/network/interfaces`, add at last
 ```
 up iptables-restore < /etc/iptables.ipv4.nat
 ```
@@ -206,6 +207,16 @@ sudo service hostapd start
 sudo service udhcpd start
 sudo update-rc.d hostapd enable
 sudo update-rc.d udhcpd enable
+```
+
+Supplement about iptables
+```
+# list all rules
+iptables -L 
+# list rules on some target
+iptables -L [target , eg. INPUT] --line-number
+# remove regarding linenumber
+iptables -D [target] [line-number]
 ```
 
 
