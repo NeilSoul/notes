@@ -29,5 +29,3 @@ it will cost much time to build gradle project info
 2. cd folder `~\.gradle\wrapper\dists\`;
 3. from <http://www.gradle.org/downloads> download correspond gradle.all zip file;
 4. put into some child folder name such as messy code `6vpvhqu0efs1fqmqr2decq1v12`;
-
-modified at 2017/2/6 again
